@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>InkDone</h1>
+<h3>
+    Everything you are. In one, simple link in bio.
+</h3>
+<p>
+    What you expect from yourself and what others will experience from being around you. <br>
+    Connecting the world's professionals to make them more productive and successful.
+</p>
+<div>
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('users.profile', username=current_user.username) }}">Your Data</a>
+    {% else %}
+        <a href="{{ url_for('users.signup') }}">Join now</a>
+    {% endif %}
+    
+</div>
+{% endblock content %}

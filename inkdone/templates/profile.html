@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}| {{user.username}}{% endblock title %}
+
+{% block content %}
+<div>
+
+    <div>
+        <section>
+            <h1>{{user.username}}</h1>
+
+            {% if user.image %}
+                <img loading="lazy" src="{{image}}" />
+            {% endif %}
+            {% if user.bio %}
+                <p>{{user.bio}}</p>
+            {% endif %}
+            {% if current_user == user %}
+                <a role="button" href="{{ url_for('users.profile_edit') }}">Edit</a>
+                <a role="button" href="{{ url_for('users.delete_account') }}">Delete</a>
+            {% endif %}
+        </section>
+    </div>
+
+    <div>
+        {% if user.academics %}
+            <details>
+                <summary>Academics</summary>
+                <p>{{user.academics}}</p>
+            </details>
+        {% endif %}
+    </div>
+
+    <div>
+        {% if user.accomplishment %}
+            <article>
+                {% if user.accomplishment[0].name != '' %}
+                    <h4>{{user.accomplishment[0].name}}</h4>
+                {% endif %}
+                {% if user.accomplishment[0].description != '' %}
+                    <p>{{user.accomplishment[0].description}}</p>
+                {% endif %}
+            </article>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock content %}

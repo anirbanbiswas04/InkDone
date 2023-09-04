@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}| Search{% endblock title %}
+
+{% block content %}
+
+{% if query %}
+    <p>Search: <strong>{{query}}</strong></p>
+{% endif %}
+
+<div>
+    {% for result in results %}
+        <a href="{{url_for('users.profile', username=result.username)}}">
+            <section>
+                <h2>{{result.username}}</h2>
+                <small>{{result.bio[:50]}}...</small>
+            </section>
+        </a>
+    {% endfor %}
+
+    <div>
+        {% if results.has_prev %}
+            <a role="button" href="?query={{query}}&page={{results.prev_num}}">Prev</a>
+        {% endif %}
+
+        {% if results.has_next %}
+            <a role="button" href="?query={{query}}&page={{results.next_num}}">Next</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}| Edit{% endblock title %}
+
+{% block content %}
+<div>
+
+    <div>
+        <section>
+            
+            <div>
+                <h1>{{current_user.username}}</h1>
+                <h4>Edit your profile</h4>
+            </div>
+
+            <div>
+                <form action="{{url_for('users.profile_edit')}}" method="post" enctype="multipart/form-data">
+                    {{form.hidden_tag()}}
+
+                    <div>
+                        {{form.email.label()}}
+                        {{form.email(placeholder="Email Address")}}
+                    </div>
+
+                    <div>
+                        {{form.bio.label()}}
+                        {{form.bio(placeholder="Write something about yourself...")}}
+                    </div>
+
+                    <div>
+                        {{form.image.label()}}
+                        <div>
+                            {% if current_user.image %}
+                                <small>{{current_user.image}}</small>
+                                {{form.clear_image.label()}}
+                                {{form.clear_image()}}
+                            {% endif %}
+                        </div>
+                        {{form.image()}}
+                        
+                    </div>
+
+                    <div>
+                        {{form.academics.label()}}
+                        {{form.academics(placeholder="Write details of your academics...")}}
+                    </div>
+
+                    <div>
+                        {{form.accomplishment_name.label()}}
+                        {{form.accomplishment_name(placeholder="Summary...")}}
+                    </div>
+
+                    <div>
+                        {{form.accomplishment_description.label()}}
+                        {{form.accomplishment_description(placeholder="Write details of your accomplishments...")}}
+                    </div>
+                    
+                    <div>
+                        {{form.submit()}}
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+</div>
+{% endblock content %}
