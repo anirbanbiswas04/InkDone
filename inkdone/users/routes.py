@@ -129,7 +129,7 @@ def profile_edit():
 
     return render_template('profile_edit.html', form=form)
 
-
+@login_required
 @users.route('/delete')
 def delete_account():
     if current_user.image:
